@@ -10,13 +10,10 @@ export function App() {
     <>
       <h1>Phonebook</h1>
       <FormAddContact />
-      {Boolean(contacts.length) && (
-        <>
-          <h2>Contacts</h2>
-          <FilterSearch />
-          <ContactsList />
-        </>
-      )}
+
+      <h2>Contacts</h2>
+      <FilterSearch />
+      <ContactsList />
     </>
   );
 }

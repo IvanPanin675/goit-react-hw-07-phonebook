@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { fetchAddContact } from 'redux/contactsSlice/contactsOperations';
 import styles from './Form.module.css';
-import { addContact } from 'redux/contactsSlice/contactsSlice';
 
 const FormAddContact = () => {
   const values = {
@@ -13,7 +13,7 @@ const FormAddContact = () => {
     return;
   };
 
-  const contacts = useSelector(store => store.contacts);
+  const contacts = useSelector(store => store.contacts.items);
   const dispatch = useDispatch();
 
   const cleanValues = e => {
@@ -35,7 +35,7 @@ const FormAddContact = () => {
     }
 
     const contact = { name, number };
-    dispatch(addContact(contact));
+    dispatch(fetchAddContact(contact));
   };
 
   return (
