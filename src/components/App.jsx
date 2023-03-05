@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectAllContacts } from 'redux/contactsSlice/contactsSelector';
 import { useEffect } from 'react';
 import { fetchAllContacts } from 'redux/contactsSlice/contactsOperations';
+import Loader from 'modules/Loader/Loader';
 
 export function App() {
   const dispatch = useDispatch();
@@ -14,18 +15,19 @@ export function App() {
   }, [dispatch]);
 
   const contacts = useSelector(selectAllContacts);
+  const loader = useSelector(state => state.contacts.isLoading);
 
   return (
     <>
       <h1>Phonebook</h1>
       <FormAddContact />
-      {contacts.length > 0 && (
+      {(loader && <Loader/>) || (contacts.length > 0 && (
         <>
           <h2>Contacts</h2>
           <FilterSearch />
           <ContactsList />
         </>
-      )}
+      ))}
     </>
   );
 }
